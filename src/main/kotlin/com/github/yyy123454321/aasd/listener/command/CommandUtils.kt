@@ -3,12 +3,21 @@ package com.github.yyy123454321.aasd.listener.command
 import com.github.yyy123454321.aasd.dto.solid.Point
 import com.github.yyy123454321.aasd.dto.solid.Vector
 import com.github.yyy123454321.aasd.dto.solid.item.SimpleColor
+import kotlinx.coroutines.runBlocking
 
-var tagPrefix = "";
+var tagPrefix = ""
+
+fun readCustom(): String {
+    // return readln()
+
+    return runBlocking {
+        CustomIO.channel.receive()
+    }
+}
 
 fun readString(propertyName: String): String? {
     print("$propertyName >> ")
-    val string = readln().trim()
+    val string = readCustom().trim()
     if (string == "cancel") return null
     return string
 }

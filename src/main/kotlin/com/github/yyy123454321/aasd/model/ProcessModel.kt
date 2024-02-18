@@ -75,7 +75,7 @@ class ProcessModel {
 
     var lightDirection: Vector = Vector(0.0, -3.0, -1.0).toUnit()
 
-    var transparency: Double = 0.25
+    var transparency: Double = 0.0
 
     var darkColor: SimpleColor = SimpleColor(0, 0, 0)
 

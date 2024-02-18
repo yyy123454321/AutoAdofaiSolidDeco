@@ -12,13 +12,13 @@ import java.util.*
 
 object CommandManager {
 
+    val commandExecutorHashMap = HashMap<String, Command>()
+    val wrongCommand = WrongCommand()
+
     /**
      * Initialize the list of commands and pass the commands to the assign function
      */
     fun run() {
-        val commandExecutorHashMap = HashMap<String, Command>()
-        val wrongCommand = WrongCommand()
-
         val commandList: List<Command> = listOf(
             SaveCommand(),
             LoadCommand(),
@@ -52,7 +52,7 @@ object CommandManager {
 
         CoroutineScope(Dispatchers.Default).launch {
             while (isActive) {
-                assign(readlnOrNull()?.lowercase() ?: "", commandExecutorHashMap, wrongCommand)
+                command(readCustom().lowercase())
                 delay(0)
             }
         }
@@ -61,12 +61,12 @@ object CommandManager {
     /**
      * Assign command to listener
      */
-    private fun assign(command: String, hash: HashMap<String, Command>, wrong: Command) {
+    fun command(command: String) {
         val args = command.split(" ")
-        val commandExecutor = hash[args[0]]
+        val commandExecutor = commandExecutorHashMap[args[0]]
 
         if (args.isEmpty() || commandExecutor == null) {
-            wrong.onCommand(emptyList())
+            wrongCommand.onCommand(emptyList())
             return
         }
 

@@ -1,5 +1,6 @@
 package com.github.yyy123454321.aasd
 
+import com.github.yyy123454321.aasd.dsl.fractal
 import com.github.yyy123454321.aasd.listener.command.CommandManager
 import com.github.yyy123454321.aasd.window.WindowManager
 

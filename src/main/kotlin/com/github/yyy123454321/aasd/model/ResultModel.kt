@@ -14,17 +14,17 @@ class ResultModel {
 
     private var scale = 5.0
 
-    private var floor: Int = 1259
+    private var floor: Int = 1927
 
     private var maxZPos = 200.0
 
-    var fileName: (Double) -> String = { "twhs7-$it.png" }
+    var fileName: (Double) -> String = { "p3_aasd1_$it.png" }
 
-    var tag: String = "s7_3d s7"
+    var tag: String = "p3_aasd1 p3"
 
     fun makeImages() {
-        makeImages(2000, 3000) { it * 1.015625 + 0.3 }
-        // makeImages(2000, 3000) { it + 1 }
+        // makeImages(2000, 3000) { it * 1.015625 + 0.3 }
+        makeImages(3000, 3000) { it + 1 }
     }
 
     private fun makeImages(width: Int, height: Int, increasingFunction: (Double) -> Double) {
@@ -57,7 +57,7 @@ class ResultModel {
                 ImageIO.write(
                     saveImage,
                     "png",
-                    File("C:/IKSWORLD/output/${fileName(realZPos)}")
+                    File("E:/ADOFAI/3d/output/${fileName(realZPos)}")
                 )
 
                 decorations +=
@@ -83,7 +83,7 @@ class ResultModel {
             realZPos = nextZPos
         }
 
-        File("C:/IKSWORLD/output/output.txt").writeText(decorations)
+        File("E:/ADOFAI/3d/output/output.txt").writeText(decorations)
         println("Success.")
     }
 
